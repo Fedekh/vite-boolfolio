@@ -20,7 +20,7 @@ export default {
                 <a class="page-link" href="#" @click.prevent="$emit('dati', datiArray.currentPage - 1)">Previous</a>
             </li>
 
-            <li class="page-item" :class="{ 'active': (index+1) === datiArray.currentPage }" v-for="(pageNum,index) in datiArray.lastPage">
+            <li class="page-item" :class="{ 'active': pageNum === datiArray.currentPage }" v-for="(pageNum,index) in datiArray.lastPage">
                 <a class="page-link" href="#" @click.prevent="$emit('dati', index+1 )">{{ index+1 }}</a>
             </li>
 
@@ -32,4 +32,3 @@ export default {
 
     </nav>
 </template>
-

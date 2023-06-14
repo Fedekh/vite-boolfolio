@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       myApi: 'http://localhost:8000', //funziona cn entrambi server php
-      isThere: false     // flag per verificare se c'è l'immagine
+      isThere: false
     }
   },
   computed: {
@@ -36,18 +36,13 @@ export default {
         return `${this.myApi}/storage/${this.myProject.image}`;
       }
     }
-  },
-  methods:{
-    hector(){
-      
-    }
   }
 
 }
 </script>
 
 <template>
-  <div class="card d-flex flex-column" @click="hector">
+  <div class="card d-flex flex-column">
 
     <img v-show="myProject.image" :src="imgSrc" :alt="myProject.title" />
     <h5 v-if="isThere" class="my-4 d-flex align-items-center"> IMMAGINE NON DISPONBILE</h5>

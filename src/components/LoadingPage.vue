@@ -1,8 +1,8 @@
 <script>
 
 export default {
-  name: 'LoadingPage'
-  }
+    name: 'LoadingPage'
+}
 
 </script>
 

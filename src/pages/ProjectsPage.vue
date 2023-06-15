@@ -1,8 +1,8 @@
-<script>
+<script >
 import axios from 'axios';
-import ProjectCard from './ProjectCard.vue';
-import LoadingPage from './LoadingPage.vue';
-import Pagination from './Pagination.vue';
+import ProjectCard from '../components/ProjectCard.vue';
+import LoadingPage from '../components/LoadingPage.vue';
+import Pagination from '../components/Pagination.vue';
 
 export default {
   name: 'App',
@@ -57,30 +57,20 @@ export default {
 </script>
 
 <template>
-    <ul>
-        <li>
-            <router-link to="/">Home</router-link>
-        </li>
-        <li>
-            <router-link to="/about">About</router-link>
-
-        </li>
-        <li>
-            <router-link to="/projects">Projects</router-link>
-        </li>
-    </ul>
-
+  <div class="container">
     <section v-if="!loading">
       <h1 class="text-center my-2 container ">Lista dei progetti :</h1>
       <div class="text-end container project-number me-4">
         Trovati : {{ totalProjects }} progetti
       </div>
 
+      <!-- ProjectCard Component -->
       <div class="row row-cols-4 gap-3">
         <div class="project col" v-for="project in projects" :key="project.id">
           <ProjectCard :myProject="project" />
         </div>
       </div>
+      <!-- /ProjectCard Component -->
 
 
       <!-- Handle pagination -->
@@ -89,15 +79,36 @@ export default {
     </section>
 
 
+    
     <!-- LoadingPage -->
 
     <section v-else>
       <LoadingPage />
     </section>
 
+    <!--/ LoadingPage -->
+
+  </div>
 </template>
 
 
-<style lang="scss" scoped>
 
+<style lang="scss">
+@use "./style/general.scss" as *;
+@use "./style/partials/variables" as *;
+
+section {
+  color: rgb(153, 253, 13);
+
+  .project-number {
+    color: #e56729;
+    font-size: 1.2rem;
+    margin: 50px;
+    padding-right: 90px;
+  }
+}
+
+.project {
+  width: calc(100% / 4 - 20px);
+}
 </style>

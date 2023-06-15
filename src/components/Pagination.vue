@@ -22,7 +22,7 @@ export default {
 
             <li class="page-item" :class="{ 'active': pageNum === datiArray.currentPage }"
                 v-for="(pageNum, index) in datiArray.lastPage">
-                <a class="page-link" href="#" @click.prevent="$emit('dati', index + 1)">{{ index + 1 }}</a>
+                <a class="page-link" href="#" @click.prevent="$emit('dati', pageNum)">{{ pageNum }}</a>
             </li>
 
             <li class="page-item" :class="{ 'disabled': datiArray.currentPage == datiArray.lastPage }">

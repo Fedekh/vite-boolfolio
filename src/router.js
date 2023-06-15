@@ -24,4 +24,6 @@ const router = createRouter({
             component: AboutPage,
         }
     ]
-})
+});
+
+export { router };

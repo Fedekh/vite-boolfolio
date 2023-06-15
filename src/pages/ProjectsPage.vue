@@ -60,13 +60,17 @@ export default {
   <div class="container">
     <section v-if="!loading">
       <h1 class="text-center my-2 container ">Lista dei progetti :</h1>
-      <div class="text-end container project-number me-4">
-        Trovati : {{ totalProjects }} progetti
+      <div class="d-flex justify-content-between align-items-center">
+        <router-link class="btn btn-info" :to="{ name: 'home' }">Home</router-link>
+
+        <p class="project-number me-4">
+          Trovati : {{ totalProjects }} progetti
+        </p>
       </div>
 
       <!-- ProjectCard Component -->
-      <div class="row row-cols-4 gap-3">
-        <div class="project col" v-for="project in projects" :key="project.id">
+      <div class="d-flex flex-row flex-wrap gap-3">
+        <div class="project " v-for="project in projects" :key="project.id">
           <ProjectCard :myProject="project" />
         </div>
       </div>
@@ -79,7 +83,7 @@ export default {
     </section>
 
 
-    
+
     <!-- LoadingPage -->
 
     <section v-else>
@@ -94,8 +98,8 @@ export default {
 
 
 <style lang="scss">
-@use "./style/general.scss" as *;
-@use "./style/partials/variables" as *;
+@use "../style/general.scss" as *;
+@use "../style/partials/variables" as *;
 
 section {
   color: rgb(153, 253, 13);
@@ -110,5 +114,17 @@ section {
 
 .project {
   width: calc(100% / 4 - 20px);
+
+  @media screen and (max-width: 1200px) {
+    width: calc(100% / 3 - 20px);
+  }
+
+  @media screen and (max-width: 992px) {
+    width: calc(100% / 2 - 20px);
+  }
+
+  @media screen and (max-width: 768px) {
+    width: calc(100% - 20px);
+  }
 }
 </style>

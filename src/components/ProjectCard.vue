@@ -66,10 +66,13 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import "../style/general.scss";
 .card {
 
   background-color: rgb(10 10 10 / 75%);
+  flex: none;
   height: 550px;
+  
 
   h5 {
     color: rgb(6, 113, 194);
@@ -80,8 +83,6 @@ export default {
   }
 
   .card-body {
-    flex: none;
-    // height: 500px;
 
     ul {
       color: aquamarine;

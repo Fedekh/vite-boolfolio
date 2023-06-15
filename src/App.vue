@@ -64,11 +64,13 @@ export default {
         Trovati : {{ totalProjects }} progetti
       </div>
 
+      <!-- ProjectCard Component -->
       <div class="row row-cols-4 gap-3">
         <div class="project col" v-for="project in projects" :key="project.id">
           <ProjectCard :myProject="project" />
         </div>
       </div>
+      <!-- /ProjectCard Component -->
 
 
       <!-- Handle pagination -->

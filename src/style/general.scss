@@ -1,8 +1,9 @@
-@use "./partials/_variables.scss" as *; 
 @import "bootstrap/scss/bootstrap.scss";
+@import "./partials/_variables.scss" ;
 
 
 body{
     background-color: #444;
     color: #fff;
+   
 }

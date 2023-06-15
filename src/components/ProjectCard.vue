@@ -10,10 +10,10 @@ export default {
   data() {
     return {
       myApi: 'http://localhost:8000', //funziona cn entrambi server php
-      isThere: false
+      isThere: false  //flag per immagine non disponibile
     }
   },
-  computed: {
+  computed: { //calcola valori derivati basati su dati di input e mantenerli automaticamente aggiornati.
 
     preview() {
       //massimo 100 caratteri per la descrizione, poi si aggiunge ...
@@ -26,10 +26,7 @@ export default {
       }
     },
 
-    imgSrc() {
-      // Se post image inizia con https://, ritorna post.image
-      // Altrimenti ritorna ${store.apiBaseUrl}/storage/${post.image} 
-
+    imgSrc() { //questa funzione serve per gestire l'immagine non disponibile
       if (!this.myProject.image) {
         this.isThere = true;
       } else {
@@ -50,14 +47,20 @@ export default {
 
     <div class="card-body mt-3">
       <h6 class="my-2"><span>Titolo: </span> {{ myProject.title }}</h6>
+
       <h6 class="my-2"><span>Descrizione: </span> {{ preview }}</h6>
-      <p v-if="myProject.type"><span>Tipologia: </span> {{ myProject.type.name }}</p>
-      <div v-if="myProject.technologies">
+
+      <p v-if="myProject.type">
+        <span>Tipologia: </span> {{ myProject.type.name }}
+      </p>
+
+      <div v-if="myProject.technologies && myProject.technologies.length > 0">
         <span>Tecnologie usate:</span>
         <ul>
           <li v-for="technology in myProject.technologies"> {{ technology.name_technologies }} </li>
         </ul>
       </div>
+
     </div>
   </div>
 </template>
@@ -101,7 +104,7 @@ export default {
     }
 
     span {
-      color: red;
+      color: rgb(227, 69, 69);
       font-size: 1.3rem;
     }
   }

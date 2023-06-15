@@ -9,8 +9,8 @@ export default {
                     routeName: "home"
                 },
                 {
-                    label: "Posts",
-                    routeName: "posts"
+                    label: "Projects",
+                    routeName: "projects"
                 },
                 {
                     label: "About us",
@@ -47,3 +47,15 @@ export default {
         </nav>
     </header>
 </template>
+
+<style lang="scss" scoped>
+@use "../style/general.scss" as *;
+
+
+header{
+    background-color: #0c3469;
+
+}
+
+
+</style>

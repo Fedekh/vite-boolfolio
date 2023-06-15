@@ -3,13 +3,15 @@ import axios from 'axios';
 import ProjectCard from '../components/ProjectCard.vue';
 import LoadingPage from '../components/LoadingPage.vue';
 import Pagination from '../components/Pagination.vue';
+import AppHeader from '../components/AppHeader.vue';
 
 export default {
   name: 'App',
   components: {
     ProjectCard,
     LoadingPage,
-    Pagination
+    Pagination,
+    AppHeader
   },
 
   data() {
@@ -57,10 +59,13 @@ export default {
 </script>
 
 <template>
+<AppHeader/>
+
   <div class="container">
     <section v-if="!loading">
       <h1 class="text-center my-2 container ">Lista dei progetti :</h1>
       <div class="d-flex justify-content-between align-items-center">
+
         <router-link class="btn btn-info" :to="{ name: 'home' }">Home</router-link>
 
         <p class="project-number me-4">

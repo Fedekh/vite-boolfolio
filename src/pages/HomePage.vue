@@ -1,20 +1,27 @@
 <script>
+import AppHeader from '../components/AppHeader.vue';
 export default {
-    name: "HomePage"
+    name: "HomePage",
+    components: {
+        AppHeader
+    }
 }
 </script>
 
 <template>
-    <div class="macrocontainer">
+    <div class="container">
 
+    </div>
+    <div class="macrocontainer">
+        
+        <AppHeader />
         <div class="wrapper container ">
-            <div class="row row-cols-3 flex-column ">
+
+            <div class="row row-cols-3 flex-column  ">
 
                 <section class="bio text-center my-5 mx-auto">
                     <h1 class="welcome">Welcome! 📱</h1>
                 </section>
-
-                <router-link class="btn w-25 btn-info mx-auto" :to="{ name: 'projects' }">Vai ai progetti</router-link>
 
                 <figure class="mx-auto my-5 code d-flex gap-2 flex-row align-items-end justify-content-between ">
                     <div class="tooltipp" data-tooltip="HTML">
@@ -96,7 +103,6 @@ export default {
     background-color: #0c3469;
     color: #aeb8e2;
     height: 100vh;
-    padding-top: 10rem;
 }
 </style>
 ```

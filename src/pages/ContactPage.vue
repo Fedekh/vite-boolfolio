@@ -2,7 +2,7 @@
 import AppHeader from '../components/AppHeader.vue';
 
 export default {
-    name: "AboutPage",
+    name: "ContactPage",
     components: {
         AppHeader
     },
@@ -12,7 +12,7 @@ export default {
 <template>
 <AppHeader/>
 
-    <h2>About us</h2>
+    <h2>Contattaci</h2>
 </template>
 
 <style lang="scss" scoped></style>

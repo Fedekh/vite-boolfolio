@@ -45,7 +45,7 @@ export default {
     <h5 v-if="isThere" class="my-4 d-flex align-items-center"> IMMAGINE NON DISPONBILE</h5>
 
 
-    <div class="card-body mt-3">
+    <div class="card-body d-flex flex-column mt-3">
       <h6 class="my-2"><span>Titolo: </span> {{ myProject.title }}</h6>
 
       <h6 class="my-2"><span>Descrizione: </span> {{ preview }}</h6>
@@ -60,10 +60,12 @@ export default {
           <li v-for="technology in myProject.technologies"> {{ technology.name_technologies }} </li>
         </ul>
       </div>
-
+      <router-link :to='{ name: "single-project", params: { slug: myProject.slug } }'
+                class="btn btn-primary w-50 mx-auto my-5">Dettagli</router-link>
     </div>
   </div>
 </template>
+
 
 <style lang="scss" scoped>
 @import "../style/general.scss";
@@ -71,7 +73,7 @@ export default {
 
   background-color: rgb(10 10 10 / 75%);
   flex: none;
-  height: 550px;
+  height: 680px;
   
 
   h5 {

@@ -28,17 +28,17 @@ export default {
 
 <template>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav id="navv" class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Boolpress</a>
+                <a class="navbar-brand text-white" href="/">Boolpress</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item" v-for="item in menuItems">
-                            <router-link :to="{ name: item.routeName }" class="nav-link active" aria-current="page">{{
+                    <ul class="navbar-nav text-white">
+                        <li class="nav-item text-white" v-for="item in menuItems">
+                            <router-link :to="{ name: item.routeName }" class="nav-link text-white  active" aria-current="page">{{
                                 item.label }}</router-link>
                         </li>
                     </ul>
@@ -53,8 +53,14 @@ export default {
 
 
 header{
-    background-color: #0c3469;
-
+    position: sticky;
+    top: 0;
+    margin-bottom: 30px;
+    z-index: 100;
+    #navv{
+        background-color: #0c3469 !important;
+        color: white !important;
+    }
 }
 
 

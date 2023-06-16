@@ -21,8 +21,8 @@ export default {
 <template>
     <div class="container">
         <h2>Not Found</h2>
-        <router-link to="/">Go to Home</router-link>
-        <a @click="goBack" class="btn btn-warning mx-4" href="">TORNA INDIETRO</a>
+        <router-link class="btn btn-danger" to="/">Go to Home (working link)</router-link>
+        <a @click="goBack" class="btn btn-warning mx-4" href="">TORNA INDIETRO (not working routerback)</a>
     </div>
 </template>
 

@@ -4,8 +4,11 @@ import ProjectsPage from "./pages/ProjectsPage.vue";
 import SingleProjectsPage from "./pages/SingleProjectsPage.vue";
 import AboutPage from "./pages/AboutPage.vue";
 import ContactPage from "./pages/ContactPage.vue";
+import NotFound from "./pages/NotFound.vue";
 
 
+// il lazy loading significa che il componente viene caricato solo quando serve e occorre togliere l'import sopra 
+//component: () => import('./pages/ProjectsPage.vue')
 
 const router = createRouter({
     history: createWebHistory(),
@@ -23,17 +26,23 @@ const router = createRouter({
         {
             path: '/projects/:slug',
             name: 'single-project',
-            component: SingleProjectsPage,
+            component: SingleProjectsPage, 
         },
         {
             path: "/about",
             name: "about",
-            component: AboutPage,
+            component: AboutPage, 
         },
         {
             path: "/contact",
             name: "contact",
-            component: ContactPage,
+            component: ContactPage,  
+        },
+        //not found viene inserito sempre per ultimo
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'not-found',
+            component: NotFound 
         }
 
     ]

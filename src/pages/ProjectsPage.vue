@@ -42,7 +42,7 @@ export default {
           }
         })
         .then(resp => {
-          console.log(resp);
+          // console.log(resp);
           this.projects = resp.data.results.data;
           this.datiArray.currentPage = resp.data.results.current_page;
           this.datiArray.lastPage = resp.data.results.last_page;

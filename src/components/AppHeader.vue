@@ -28,8 +28,8 @@ export default {
 
 <template>
     <header>
-        <nav id="navv" class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
+        <nav id="navv" class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-between">
+            <div class="container-fluid sottonav">
                 <a class="navbar-brand text-white" href="/">Boolpress</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,6 +60,13 @@ header{
     #navv{
         background-color: #0c3469 !important;
         color: white !important;
+        .router-link-exact-active{
+            text-decoration: underline !important;
+            background-color: #4ecb6f !important;
+        }
+        .collapse{
+            margin: 0 auto
+        }
     }
 }
 

@@ -18,6 +18,8 @@ export default {
     return {
       myApi: 'http://localhost:8000',
       projects: [],
+      types: [],
+      typeSelected: 'all',
       datiArray: {
         currentPage: 1,
         lastPage: null,
@@ -29,18 +31,20 @@ export default {
   },
   mounted() {
     this.getProject();
+    this.getType();
   },
   methods: {
     getProject(pageNumber = 1) {
-
       this.loading = true;
+      const params = {
+        page: pageNumber,
+      }
+      if (this.typeSelected !== 'all') {
+        params.type_id = this.typeSelected;
+      }
 
       axios
-        .get(`${this.myApi}/api/projects`, {
-          params: {
-            page: pageNumber
-          }
-        })
+        .get(`${this.myApi}/api/projects`, { params })
         .then(resp => {
           // console.log(resp);
           this.projects = resp.data.results.data;
@@ -52,6 +56,14 @@ export default {
           this.loading = false;
 
         })
+    },
+
+    getType() {
+      axios
+        .get(`${this.myApi}/api/types`)
+        .then((resp) => {
+          this.types = resp.data.results;
+        })
     }
   }
 }
@@ -59,15 +71,27 @@ export default {
 </script>
 
 <template>
-<AppHeader/>
+  <AppHeader />
 
   <div class="container">
     <section v-if="!loading">
       <h1 class="text-center my-2 container ">Lista dei progetti :</h1>
+      <router-link class="btn btn-info" :to="{ name: 'home' }">Home</router-link>
+
+
       <div class="d-flex justify-content-between align-items-center">
+        <!-- fitro -->
+        <div class="d-flex align-items-center justify-content-between">
 
-        <router-link class="btn btn-info" :to="{ name: 'home' }">Home</router-link>
 
+          <label for="type" class="w-100">Seleziona per tipologia</label>
+
+          <select v-model="typeSelected" class="form-select" aria-label="Default select example">
+            <option value="all">Tutti</option>
+            <option v-for="type in types"></option>
+          </select>
+
+        </div>
         <p class="project-number me-4">
           Trovati : {{ totalProjects }} progetti
         </p>

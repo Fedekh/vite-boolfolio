@@ -19,7 +19,7 @@ export default {
       myApi: 'http://localhost:8000',
       projects: [],
       types: [],
-      typeSelected: 'all',
+      typeSelected: 'TUTTI',
       datiArray: {
         currentPage: 1,
         lastPage: null,
@@ -36,17 +36,19 @@ export default {
   methods: {
     getProject(pageNumber = 1) {
       this.loading = true;
+
       const params = {
         page: pageNumber,
       }
-      if (this.typeSelected !== 'all') {
+      
+      if (this.typeSelected !== 'TUTTI') {
         params.type_id = this.typeSelected;
       }
 
       axios
         .get(`${this.myApi}/api/projects`, { params })
         .then(resp => {
-          // console.log(resp);
+          console.log(resp);
           this.projects = resp.data.results.data;
           this.datiArray.currentPage = resp.data.results.current_page;
           this.datiArray.lastPage = resp.data.results.last_page;
@@ -80,15 +82,16 @@ export default {
 
 
       <div class="d-flex justify-content-between align-items-center">
-        <!-- fitro -->
+
+        <!-- fitro tipologia-->
         <div class="d-flex align-items-center justify-content-between">
 
 
           <label for="type" class="w-100">Seleziona per tipologia</label>
 
-          <select v-model="typeSelected" class="form-select" aria-label="Default select example">
-            <option value="all">Tutti</option>
-            <option v-for="type in types"></option>
+          <select v-model="typeSelected" class="form-select" aria-label="Default select example" @change="getProject()">
+            <option value="TUTTI">Tutti</option>
+            <option :value="tipe.id" v-for="(tipe,index) in types" :key="tipe.id">{{ tipe.name }}</option>
           </select>
 
         </div>

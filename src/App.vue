@@ -1,5 +1,4 @@
 <script >
-// import { RouterView } from 'vue-router';
 import AppHeader from './components/AppHeader.vue';
 
 </script>
@@ -7,14 +6,12 @@ import AppHeader from './components/AppHeader.vue';
 
 
 <template>
-
-<AppHeader/>
-<router-view />
+    <AppHeader />
+    <router-view />
 </template>
 
 
 
 <style lang="scss">
 @use "./style/general.scss" as *;
-
 </style>

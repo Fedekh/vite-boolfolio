@@ -42,7 +42,10 @@ export default {
   <div class="card d-flex flex-column">
 
     <img v-show="myProject.image" :src="imgSrc" :alt="myProject.title" />
-    <h5 v-if="isThere" class="my-4 d-flex align-items-center"> IMMAGINE NON DISPONBILE</h5>
+    <div v-if="isThere" class="position-relative">
+      <img class="w-100" src="https://pbs.twimg.com/media/FS8zh8laQAAjjkK.jpg" alt="">
+      <p class="position-absolute top-50 start-50 translate-middle text-white">IMMAGINE NON TROVATA</p>
+    </div>
 
 
     <div class="card-body d-flex flex-column mt-3">
@@ -61,7 +64,7 @@ export default {
         </ul>
       </div>
       <router-link :to='{ name: "single-project", params: { slug: myProject.slug } }'
-                class="btn btn-primary w-50 mx-auto my-5">Dettagli</router-link>
+        class="btn btn-primary w-50 mx-auto my-5">Dettagli</router-link>
     </div>
   </div>
 </template>
@@ -69,15 +72,16 @@ export default {
 
 <style lang="scss" scoped>
 @import "../style/general.scss";
+
 .card {
 
-  background-color: rgb(10 10 10 / 75%);
+  background-color: rgba(25, 22, 22, 0.75);
   flex: none;
   height: 680px;
-  
+
 
   h5 {
-    color: rgb(6, 113, 194);
+    color: rgb(164, 201, 228);
   }
 
   img {

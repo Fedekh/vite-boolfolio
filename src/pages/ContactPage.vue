@@ -1,10 +1,13 @@
 <script>
 import AppHeader from '../components/AppHeader.vue';
+import ContactPage from '../components/ContactPage.vue';
 
 export default {
     name: "ContactPage",
     components: {
-        AppHeader
+        AppHeader,
+        ContactPage
+
     },
 }
 </script>
@@ -13,6 +16,7 @@ export default {
 <AppHeader/>
 
     <h2>Contattaci</h2>
+    <ContactPage/>
 </template>
 
 <style lang="scss" scoped></style>

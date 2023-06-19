@@ -20,7 +20,7 @@ export default {
             <div class="row row-cols-3 flex-column  ">
 
                 <section class="bio text-center my-5 mx-auto">
-                    <h1 class="welcome">Welcome! 📱</h1>
+                    <h1 class="welcome">Welcome ! 📱</h1>
                 </section>
 
                 <figure class="mx-auto my-5 code d-flex gap-2 flex-row align-items-end justify-content-between ">

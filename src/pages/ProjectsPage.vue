@@ -19,7 +19,9 @@ export default {
       myApi: 'http://localhost:8000',
       projects: [],
       types: [],
+      technologies: [],
       typeSelected: 'TUTTI',
+      technologySelected: [],
       datiArray: {
         currentPage: 1,
         lastPage: null,
@@ -32,6 +34,7 @@ export default {
   mounted() {
     this.getProject();
     this.getType();
+    this.getTechnology();
   },
   methods: {
     getProject(pageNumber = 1) {
@@ -40,15 +43,19 @@ export default {
       const params = {
         page: pageNumber,
       }
-      
+
       if (this.typeSelected !== 'TUTTI') {
         params.type_id = this.typeSelected;
+      }
+
+      if (this.technologySelected.length > 0 ){
+        params.technologies = this.technologySelected;
+
       }
 
       axios
         .get(`${this.myApi}/api/projects`, { params })
         .then(resp => {
-          console.log(resp);
           this.projects = resp.data.results.data;
           this.datiArray.currentPage = resp.data.results.current_page;
           this.datiArray.lastPage = resp.data.results.last_page;
@@ -66,7 +73,17 @@ export default {
         .then((resp) => {
           this.types = resp.data.results;
         })
+    },
+
+    getTechnology() {
+      axios
+        .get(`${this.myApi}/api/technologies`)
+        .then((resp) => {
+          this.technologies = resp.data.results
+          console.log(this.technologies);
+        })
     }
+
   }
 }
 
@@ -78,23 +95,37 @@ export default {
   <div class="container">
     <section v-if="!loading">
       <h1 class="text-center my-2 container ">Lista dei progetti :</h1>
-      <router-link class="btn btn-info" :to="{ name: 'home' }">Home</router-link>
+      <router-link class="btn btn-info my-5" :to="{ name: 'home' }">Home</router-link>
 
 
-      <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex justify-content-between filter align-items-center">
+        <div class="filters">
 
-        <!-- fitro tipologia-->
-        <div class="d-flex align-items-center justify-content-between">
+          <!-- fitro tipologia-->
+          <div class="d-flex align-items-center justify-content-between">
 
+            <label for="type" class="w-100">Seleziona per tipologia :</label>
 
-          <label for="type" class="w-100">Seleziona per tipologia</label>
+            <select v-model="typeSelected" class="form-select" aria-label="Default select example" @change="getProject()">
+              <option value="TUTTI">Tutti</option>
+              <option :value="tipe.id" v-for="(tipe, index) in types" :key="tipe.id" >{{ tipe.name }}  </option>
+            </select>
 
-          <select v-model="typeSelected" class="form-select" aria-label="Default select example" @change="getProject()">
-            <option value="TUTTI">Tutti</option>
-            <option :value="tipe.id" v-for="(tipe,index) in types" :key="tipe.id">{{ tipe.name }}</option>
-          </select>
+          </div>
 
+          <!-- fitro tecnologie-->
+          <div class="my-4 d-flex justify-content-between">
+            <p>Seleziona per tecnologie: </p>
+            <div >
+              <div class="d-flex mx-3" v-for="technology in technologies" :key="technology.id">
+                <label for="{{technology.id}}" class="w-100 mx-3">{{ technology.name_technologies }}</label>
+                <input v-model="technologySelected" type="checkbox" id="{{technology.id}}" :value="technology.name_technologies"  @change="getProject()">
+              </div>
+            </div>
+
+          </div>
         </div>
+
         <p class="project-number me-4">
           Trovati : {{ totalProjects }} progetti
         </p>
@@ -136,13 +167,32 @@ export default {
 section {
   color: rgb(153, 253, 13);
 
-  .project-number {
-    color: #e56729;
-    font-size: 1.2rem;
-    margin: 50px;
-    padding-right: 90px;
+  .filter {
+
+    .form-select {
+      width: 200px; // Larghezza della select
+      background-color: #5296e3;
+
+      & option {
+        background-color: #1b1b3e;
+        color: #15d361f0;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .project-number {
+      color: #e56729;
+      font-size: 1.2rem;
+      margin: 50px;
+      padding-right: 90px;
+    }
   }
 }
+
+
 
 .project {
   width: calc(100% / 4 - 20px);

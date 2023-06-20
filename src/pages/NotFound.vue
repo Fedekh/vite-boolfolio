@@ -9,6 +9,11 @@ export default {
         goBack() {
             // this.$router.go(-2);
             this.$router.back();
+        },
+        beforeRouteEnter(to, from, next) {
+            next(vm => {
+                vm._prevRouteName = from.name ? from.name : '';
+            })
         }
     },
     mounted() {
@@ -126,7 +131,7 @@ export default {
             
             <!-- Replace your Home page address with href -->
             
-            <a href='http://localhost:5174/projects'>
+            <a href='' @click="goBack">
                 <svg width="107px" viewBox="0 0 107 34" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <defs>
                         <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="fill-glow">
